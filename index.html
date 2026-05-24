@@ -16,8 +16,9 @@
             font-family: 'Georgia', serif;
             background-color: #000;
             color: #fff;
-            overflow-x: hidden;
-            min-height: 100vh;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
         }
 
         /* Background Room */
@@ -31,44 +32,60 @@
             background-size: cover;
             background-position: center;
             opacity: 0;
-            animation: fadeInBg 1.5s ease-in 0.5s forwards;
+            animation: fadeInBg 2s ease-in 0.5s forwards;
             z-index: 1;
         }
 
-        /* Logo */
-        .logo {
+        /* Container for all content */
+        .main-container {
             position: relative;
-            width: 350px;
-            max-width: 70%;
-            margin: 0 auto;
-            padding-top: 5vh;
-            z-index: 4;
-            opacity: 0;
-            animation: fadeIn 1.5s ease-in 1.5s forwards;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
         }
 
-        .logo img {
+        /* Logo - Center Stage (Initial) */
+        .logo-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            max-width: 80%;
+            z-index: 10;
+            opacity: 0;
+            animation: 
+                fadeInLogo 2s ease-in 2.5s forwards,
+                fadeOutLogo 1.5s ease-out 5.5s forwards;
+        }
+
+        .logo-center img {
             width: 100%;
             height: auto;
-            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.6));
         }
 
         /* TV Container */
         .tv-container {
-            position: relative;
-            width: 700px;
-            max-width: 85%;
-            margin: 2rem auto 0;
+            position: absolute;
+            width: 600px;
+            max-width: 70%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 3;
             opacity: 0;
-            animation: fadeIn 1.5s ease-in 2s forwards;
+            animation: fadeIn 2s ease-in 7s forwards;
         }
 
         /* YouTube iframe wrapper */
         .video-wrapper {
             position: relative;
             width: 100%;
-            padding-bottom: 75%; /* 4:3 aspect ratio for old TV */
+            padding-bottom: 75%;
             background: #000;
             border-radius: 8px;
             overflow: hidden;
@@ -99,17 +116,35 @@
             z-index: 5;
         }
 
-        /* Hooded Mascot */
+        /* Logo - Small (Right Side) */
+        .logo-small {
+            position: fixed;
+            right: 8%;
+            top: 15%;
+            width: 200px;
+            max-width: 25%;
+            z-index: 4;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 9s forwards;
+        }
+
+        .logo-small img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+        }
+
+        /* Hooded Mascot - Left Side */
         .mascot {
             position: fixed;
             left: 5%;
-            bottom: 0;
+            bottom: 5%;
             width: 350px;
             max-width: 30%;
-            z-index: 6;
+            z-index: 4;
             opacity: 0;
-            transform: translateX(-100px);
-            animation: slideInMascot 2s ease-out 2.5s forwards;
+            transform: translateX(-150px);
+            animation: slideInMascot 2.5s ease-out 9s forwards;
         }
 
         .mascot img {
@@ -118,46 +153,37 @@
             filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
         }
 
-        /* Content Section */
-        .content {
-            position: relative;
+        /* CTA Section - Bottom */
+        .cta-section {
+            position: fixed;
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            padding: 3rem 2rem;
             z-index: 4;
             opacity: 0;
-            animation: fadeIn 1.5s ease-in 3s forwards;
+            animation: fadeIn 2s ease-in 11s forwards;
         }
 
         .trailer-text {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-style: italic;
             color: #ccc;
-            margin: 2rem 0 1rem;
+            margin-bottom: 1rem;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             letter-spacing: 2px;
         }
 
-        .tagline {
-            font-size: 1.2rem;
-            color: #999;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CTA Buttons */
         .cta-buttons {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 2rem;
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
+            padding: 0.8rem 2rem;
+            font-size: 0.95rem;
             font-weight: bold;
             text-decoration: none;
             border: 2px solid #fff;
@@ -181,29 +207,20 @@
             color: #ff0000;
         }
 
-        /* Footer */
-        footer {
-            position: relative;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-            color: #666;
-            z-index: 4;
-        }
-
-        footer a {
-            color: #999;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
         /* Animations */
         @keyframes fadeInBg {
             from { opacity: 0; }
             to { opacity: 1; }
+        }
+
+        @keyframes fadeInLogo {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes fadeOutLogo {
+            from { opacity: 1; }
+            to { opacity: 0; }
         }
 
         @keyframes fadeIn {
@@ -214,7 +231,7 @@
         @keyframes slideInMascot {
             from { 
                 opacity: 0;
-                transform: translateX(-100px);
+                transform: translateX(-150px);
             }
             to { 
                 opacity: 1;
@@ -223,53 +240,107 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .logo {
-                width: 280px;
-                padding-top: 3vh;
+        @media (max-width: 1024px) {
+            .logo-center {
+                width: 400px;
             }
 
             .tv-container {
-                width: 95%;
-                margin-top: 1.5rem;
+                width: 500px;
+            }
+
+            .logo-small {
+                width: 180px;
+                right: 5%;
+                top: 12%;
             }
 
             .mascot {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .main-container {
+                height: auto;
+                min-height: 100vh;
+                padding: 2rem 0;
+            }
+
+            .logo-center {
+                width: 300px;
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 2rem auto;
+            }
+
+            .tv-container {
+                position: relative;
+                width: 90%;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 2rem auto;
+            }
+
+            .logo-small {
+                position: relative;
                 width: 200px;
-                max-width: 40%;
-                left: 0;
+                right: auto;
+                top: auto;
+                margin: 2rem auto;
+            }
+
+            .mascot {
+                display: none;
+            }
+
+            .cta-section {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin: 2rem auto;
+                padding-bottom: 2rem;
             }
 
             .trailer-text {
-                font-size: 1.2rem;
-            }
-
-            .tagline {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
             }
-
-            .btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
         }
 
         @media (max-width: 480px) {
-            .logo {
-                width: 220px;
+            .logo-center {
+                width: 250px;
+            }
+
+            .tv-container {
+                width: 95%;
+            }
+
+            .logo-small {
+                width: 160px;
             }
 
             .trailer-text {
                 font-size: 1rem;
             }
 
-            .mascot {
-                display: none;
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -279,53 +350,51 @@
     <!-- Background Room -->
     <div class="background"></div>
 
-    <!-- Logo -->
-    <div class="logo">
-        <img src="The-Quiet-Dark-logo-2026-no-bg.png" alt="The Quiet Dark">
-    </div>
+    <!-- Main Container -->
+    <div class="main-container">
 
-    <!-- TV Container with Video -->
-    <div class="tv-container">
-        <div class="video-wrapper">
-            <!-- YouTube Video Embed -->
-            <iframe 
-                src="https://www.youtube.com/embed/T9Q56GS91kk" 
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe>
-            <!-- TV Frame Overlay -->
-            <div class="tv-frame"></div>
+        <!-- Logo - Center Stage (Appears then fades out) -->
+        <div class="logo-center">
+            <img src="The-Quiet-Dark-logo-2026-no-bg.png" alt="The Quiet Dark">
         </div>
-    </div>
 
-    <!-- Hooded Mascot -->
-    <div class="mascot">
-        <img src="yt-profile.jpg" alt="The Quiet Dark Mascot">
-    </div>
-
-    <!-- Content Section -->
-    <div class="content">
-        <p class="trailer-text">Watch the trailer... if you dare...</p>
-        <p class="tagline">True horror stories from the dark. Real experiences. Real fear. New nightmares every week.</p>
-
-        <div class="cta-buttons">
-            <a href="https://www.youtube.com/@quietdarkstories" target="_blank" class="btn btn-primary">
-                Watch on YouTube
-            </a>
-            <a href="mailto:submit@quietdarkstories.com" class="btn">
-                Submit Your Story
-            </a>
+        <!-- TV Container with Video (Appears after logo fades) -->
+        <div class="tv-container">
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/T9Q56GS91kk" 
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+                <div class="tv-frame"></div>
+            </div>
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Quiet Dark Stories. All Rights Reserved.</p>
-        <p style="margin-top: 0.5rem;">
-            <a href="https://www.youtube.com/@quietdarkstories" target="_blank">YouTube</a>
-        </p>
-    </footer>
+        <!-- Logo - Small (Right side, appears with mascot) -->
+        <div class="logo-small">
+            <img src="The-Quiet-Dark-logo-2026-no-bg.png" alt="The Quiet Dark">
+        </div>
+
+        <!-- Hooded Mascot - Left side -->
+        <div class="mascot">
+            <img src="yt-profile.jpg" alt="The Quiet Dark Mascot">
+        </div>
+
+        <!-- CTA Section - Bottom -->
+        <div class="cta-section">
+            <p class="trailer-text">Watch the trailer... if you dare...</p>
+            <div class="cta-buttons">
+                <a href="https://www.youtube.com/@quietdarkstories" target="_blank" class="btn btn-primary">
+                    Watch on YouTube
+                </a>
+                <a href="mailto:submit@quietdarkstories.com" class="btn">
+                    Submit Your Story
+                </a>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 </html>
