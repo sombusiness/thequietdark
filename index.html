@@ -47,7 +47,7 @@
             z-index: 2;
         }
 
-        /* Logo - Center Stage (Initial) */
+        /* Logo - Center Stage (Initial) - NO ZOOM */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -58,8 +58,8 @@
             z-index: 10;
             opacity: 0;
             animation: 
-                fadeInLogo 2s ease-in 2.5s forwards,
-                fadeOutLogo 1.5s ease-out 5.5s forwards;
+                fadeInLogoSimple 2s ease-in 2.5s forwards,
+                fadeOutLogo 1.5s ease-out 7.5s forwards;
         }
 
         .logo-center img {
@@ -78,7 +78,7 @@
             transform: translate(-50%, -50%);
             z-index: 3;
             opacity: 0;
-            animation: fadeIn 2s ease-in 7s forwards;
+            animation: fadeIn 2s ease-in 9s forwards;
         }
 
         /* YouTube iframe wrapper */
@@ -125,7 +125,7 @@
             max-width: 25%;
             z-index: 4;
             opacity: 0;
-            animation: fadeIn 2s ease-in 9s forwards;
+            animation: fadeIn 2s ease-in 11s forwards;
         }
 
         .logo-small img {
@@ -144,7 +144,7 @@
             z-index: 4;
             opacity: 0;
             transform: translateX(-150px);
-            animation: slideInMascot 2.5s ease-out 9s forwards;
+            animation: slideInMascot 2.5s ease-out 11s forwards;
         }
 
         .mascot img {
@@ -156,13 +156,13 @@
         /* CTA Section - Bottom */
         .cta-section {
             position: fixed;
-            bottom: 5%;
+            bottom: 8%;
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
             z-index: 4;
             opacity: 0;
-            animation: fadeIn 2s ease-in 11s forwards;
+            animation: fadeIn 2s ease-in 13s forwards;
         }
 
         .trailer-text {
@@ -207,15 +207,39 @@
             color: #ff0000;
         }
 
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 1%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.75rem;
+            color: #666;
+            z-index: 4;
+            opacity: 0;
+            animation: fadeIn 2s ease-in 13s forwards;
+        }
+
+        footer a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
         /* Animations */
         @keyframes fadeInBg {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        @keyframes fadeInLogo {
-            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        @keyframes fadeInLogoSimple {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes fadeOutLogo {
@@ -239,8 +263,8 @@
             }
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
+        /* TABLET - Landscape (1024px and below) */
+        @media (max-width: 1024px) and (min-width: 769px) {
             .logo-center {
                 width: 400px;
             }
@@ -250,16 +274,31 @@
             }
 
             .logo-small {
-                width: 180px;
+                width: 160px;
                 right: 5%;
-                top: 12%;
+                top: 10%;
             }
 
             .mascot {
                 width: 280px;
+                left: 3%;
+            }
+
+            .cta-section {
+                bottom: 6%;
+            }
+
+            .trailer-text {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
 
+        /* TABLET - Portrait & Mobile Landscape (768px and below) */
         @media (max-width: 768px) {
             body {
                 overflow-y: auto;
@@ -269,33 +308,38 @@
             .main-container {
                 height: auto;
                 min-height: 100vh;
-                padding: 2rem 0;
+                flex-direction: column;
+                padding: 3rem 1rem;
             }
 
             .logo-center {
-                width: 300px;
+                width: 320px;
                 position: relative;
                 top: auto;
                 left: auto;
                 transform: none;
-                margin: 2rem auto;
+                margin: 2rem auto 3rem;
+                animation: fadeInLogoSimple 2s ease-in 2.5s forwards;
             }
 
             .tv-container {
                 position: relative;
-                width: 90%;
+                width: 100%;
+                max-width: 500px;
                 top: auto;
                 left: auto;
                 transform: none;
-                margin: 2rem auto;
+                margin: 0 auto 2rem;
+                animation: fadeIn 2s ease-in 4.5s forwards;
             }
 
             .logo-small {
                 position: relative;
-                width: 200px;
+                width: 220px;
                 right: auto;
                 top: auto;
                 margin: 2rem auto;
+                animation: fadeIn 2s ease-in 6.5s forwards;
             }
 
             .mascot {
@@ -308,22 +352,40 @@
                 left: auto;
                 transform: none;
                 margin: 2rem auto;
-                padding-bottom: 2rem;
+                animation: fadeIn 2s ease-in 8.5s forwards;
             }
 
             .trailer-text {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             .cta-buttons {
                 flex-direction: column;
                 gap: 1rem;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            footer {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                margin: 2rem auto;
+                padding-bottom: 2rem;
+                animation: fadeIn 2s ease-in 8.5s forwards;
             }
         }
 
+        /* MOBILE - Small (480px and below) */
         @media (max-width: 480px) {
+            .main-container {
+                padding: 2rem 0.5rem;
+            }
+
             .logo-center {
-                width: 250px;
+                width: 260px;
+                margin: 1.5rem auto 2.5rem;
             }
 
             .tv-container {
@@ -331,16 +393,21 @@
             }
 
             .logo-small {
-                width: 160px;
+                width: 180px;
             }
 
             .trailer-text {
                 font-size: 1rem;
+                letter-spacing: 1px;
             }
 
             .btn {
                 padding: 0.7rem 1.5rem;
                 font-size: 0.85rem;
+            }
+
+            footer {
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -395,6 +462,14 @@
         </div>
 
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Quiet Dark Stories. All Rights Reserved.</p>
+        <p style="margin-top: 0.3rem;">
+            <a href="https://www.youtube.com/@quietdarkstories" target="_blank">YouTube</a>
+        </p>
+    </footer>
 
 </body>
 </html>
