@@ -27,7 +27,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('dark_room_vignette.png');
+            background-image: url('https://sombusiness.github.io/thequietdark/dark_room_vignette.png');
             background-size: cover;
             background-position: center;
             opacity: 0;
@@ -38,10 +38,10 @@
         /* Logo */
         .logo {
             position: relative;
-            width: 500px;
-            max-width: 85%;
+            width: 350px;
+            max-width: 70%;
             margin: 0 auto;
-            padding-top: 8vh;
+            padding-top: 5vh;
             z-index: 4;
             opacity: 0;
             animation: fadeIn 1.5s ease-in 1.5s forwards;
@@ -56,9 +56,9 @@
         /* TV Container */
         .tv-container {
             position: relative;
-            width: 800px;
-            max-width: 90%;
-            margin: 3rem auto 0;
+            width: 700px;
+            max-width: 85%;
+            margin: 2rem auto 0;
             z-index: 3;
             opacity: 0;
             animation: fadeIn 1.5s ease-in 2s forwards;
@@ -79,8 +79,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 90%;
-            height: 85%;
+            width: 85%;
+            height: 80%;
             border: none;
         }
 
@@ -91,7 +91,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('tv_frame.png');
+            background-image: url('https://sombusiness.github.io/thequietdark/tv_frame.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -102,13 +102,13 @@
         /* Hooded Mascot */
         .mascot {
             position: fixed;
-            right: 5%;
+            left: 5%;
             bottom: 0;
             width: 350px;
             max-width: 30%;
             z-index: 6;
             opacity: 0;
-            transform: translateX(100px);
+            transform: translateX(-100px);
             animation: slideInMascot 2s ease-out 2.5s forwards;
         }
 
@@ -214,7 +214,7 @@
         @keyframes slideInMascot {
             from { 
                 opacity: 0;
-                transform: translateX(100px);
+                transform: translateX(-100px);
             }
             to { 
                 opacity: 1;
@@ -225,19 +225,19 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .logo {
-                width: 350px;
-                padding-top: 5vh;
+                width: 280px;
+                padding-top: 3vh;
             }
 
             .tv-container {
                 width: 95%;
-                margin-top: 2rem;
+                margin-top: 1.5rem;
             }
 
             .mascot {
                 width: 200px;
                 max-width: 40%;
-                right: 0;
+                left: 0;
             }
 
             .trailer-text {
@@ -261,7 +261,7 @@
 
         @media (max-width: 480px) {
             .logo {
-                width: 280px;
+                width: 220px;
             }
 
             .trailer-text {
@@ -269,7 +269,7 @@
             }
 
             .mascot {
-                display: none; /* Hide mascot on very small screens */
+                display: none;
             }
         }
     </style>
@@ -287,13 +287,13 @@
     <!-- TV Container with Video -->
     <div class="tv-container">
         <div class="video-wrapper">
-            <!-- YouTube Video Embed - REPLACE VIDEO_ID with your actual video ID -->
+            <!-- YouTube Video Embed -->
             <iframe 
-    src="https://www.youtube.com/embed/T9Q56GS91kk" 
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    allowfullscreen>
-</iframe>
+                src="https://www.youtube.com/embed/T9Q56GS91kk" 
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe>
             <!-- TV Frame Overlay -->
             <div class="tv-frame"></div>
         </div>
@@ -323,8 +323,7 @@
     <footer>
         <p>&copy; 2026 Quiet Dark Stories. All Rights Reserved.</p>
         <p style="margin-top: 0.5rem;">
-            <a href="https://www.youtube.com/@quietdarkstories" target="_blank">YouTube</a> 
-            <!-- <a href="#" target="_blank">TikTok</a> -->
+            <a href="https://www.youtube.com/@quietdarkstories" target="_blank">YouTube</a>
         </p>
     </footer>
 
