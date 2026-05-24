@@ -47,7 +47,7 @@
             z-index: 2;
         }
 
-        /* Logo - Center Stage (Initial) - NO ZOOM */
+        /* Logo - Center Stage (Initial) */
         .logo-center {
             position: absolute;
             top: 50%;
@@ -57,7 +57,8 @@
             max-width: 80%;
             z-index: 10;
             opacity: 0;
-            animation: 
+            pointer-events: none;          /* cannot block clicks */
+            animation:
                 fadeInLogoSimple 2s ease-in 2.5s forwards,
                 fadeOutLogo 1.5s ease-out 7.5s forwards;
         }
@@ -137,9 +138,9 @@
         .mascot {
             position: fixed;
             left: 5%;
-            bottom: 5%;
-            width: 350px;
-            max-width: 30%;
+            bottom: 8%;
+            width: 260px;
+            max-width: 22%;
             z-index: 4;
             opacity: 0;
             transform: translateX(-150px);
@@ -252,11 +253,11 @@
         }
 
         @keyframes slideInMascot {
-            from { 
+            from {
                 opacity: 0;
                 transform: translateX(-150px);
             }
-            to { 
+            to {
                 opacity: 1;
                 transform: translateX(0);
             }
@@ -279,7 +280,7 @@
             }
 
             .mascot {
-                width: 280px;
+                width: 230px;
                 left: 3%;
             }
 
@@ -311,6 +312,7 @@
                 padding: 3rem 1rem;
             }
 
+            /* On mobile, use the static logo only (no fade-out) */
             .logo-center {
                 width: 320px;
                 position: relative;
@@ -318,7 +320,7 @@
                 left: auto;
                 transform: none;
                 margin: 2rem auto 3rem;
-                animation: fadeInLogoSimple 2s ease-in 2.5s forwards;
+                animation: fadeInLogoSimple 1.5s ease-in 0.5s forwards;
             }
 
             .tv-container {
@@ -329,7 +331,7 @@
                 left: auto;
                 transform: none;
                 margin: 0 auto 2rem;
-                animation: fadeIn 2s ease-in 4.5s forwards;
+                animation: fadeIn 1.5s ease-in 1.5s forwards;
             }
 
             .logo-small {
@@ -338,7 +340,7 @@
                 right: auto;
                 top: auto;
                 margin: 2rem auto;
-                animation: fadeIn 2s ease-in 6.5s forwards;
+                animation: fadeIn 1.5s ease-in 2.5s forwards;
             }
 
             .mascot {
@@ -351,7 +353,7 @@
                 left: auto;
                 transform: none;
                 margin: 2rem auto;
-                animation: fadeIn 2s ease-in 8.5s forwards;
+                animation: fadeIn 1.5s ease-in 2.5s forwards;
             }
 
             .trailer-text {
@@ -372,7 +374,7 @@
                 transform: none;
                 margin: 2rem auto;
                 padding-bottom: 2rem;
-                animation: fadeIn 2s ease-in 8.5s forwards;
+                animation: fadeIn 1.5s ease-in 2.5s forwards;
             }
         }
 
@@ -419,18 +421,18 @@
     <!-- Main Container -->
     <div class="main-container">
 
-        <!-- Logo - Center Stage (Appears then fades out) -->
-        <div class="logo-center">
+        <!-- Logo - Center Stage (Appears then fades out on desktop) -->
+        <div class="logo-center" id="logoCenter">
             <img src="The-Quiet-Dark-logo-2026-no-bg.png" alt="The Quiet Dark">
         </div>
 
-        <!-- TV Container with Video (Appears after logo fades) -->
+        <!-- TV Container with Video -->
         <div class="tv-container">
             <div class="video-wrapper">
-                <iframe 
-                    src="https://www.youtube.com/embed/T9Q56GS91kk" 
+                <iframe
+                    src="https://www.youtube.com/embed/T9Q56GS91kk"
                     frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
                 </iframe>
                 <div class="tv-frame"></div>
@@ -444,7 +446,7 @@
 
         <!-- Hooded Mascot - Left side -->
         <div class="mascot">
-            <img src="yt-profile.jpg" alt="The Quiet Dark Mascot">
+            <img src="mascot.png" alt="The Quiet Dark Mascot">
         </div>
 
         <!-- CTA Section - Bottom -->
@@ -469,6 +471,19 @@
             <a href="https://www.youtube.com/@quietdarkstories" target="_blank">YouTube</a>
         </p>
     </footer>
+
+    <!-- Remove big logo after its fade-out animation finishes -->
+    <script>
+        const logoCenter = document.getElementById('logoCenter');
+
+        if (logoCenter) {
+            logoCenter.addEventListener('animationend', function (e) {
+                if (e.animationName === 'fadeOutLogo') {
+                    logoCenter.parentNode.removeChild(logoCenter);
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
