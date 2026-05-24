@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Quiet Dark | True Horror Stories</title>
+    <meta name="description" content="True horror stories from the dark. Real experiences. Real fear. New nightmares every week.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Background Room */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('dark_room_vignette.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: fadeInBg 1.5s ease-in 0.5s forwards;
+            z-index: 1;
+        }
+
+        /* Logo */
+        .logo {
+            position: relative;
+            width: 500px;
+            max-width: 85%;
+            margin: 0 auto;
+            padding-top: 8vh;
+            z-index: 4;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in 1.5s forwards;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.4));
+        }
+
+        /* TV Container */
+        .tv-container {
+            position: relative;
+            width: 800px;
+            max-width: 90%;
+            margin: 3rem auto 0;
+            z-index: 3;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in 2s forwards;
+        }
+
+        /* YouTube iframe wrapper */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 75%; /* 4:3 aspect ratio for old TV */
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 85%;
+            border: none;
+        }
+
+        /* TV Frame Overlay */
+        .tv-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('tv_frame.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Hooded Mascot */
+        .mascot {
+            position: fixed;
+            right: 5%;
+            bottom: 0;
+            width: 350px;
+            max-width: 30%;
+            z-index: 6;
+            opacity: 0;
+            transform: translateX(100px);
+            animation: slideInMascot 2s ease-out 2.5s forwards;
+        }
+
+        .mascot img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+        }
+
+        /* Content Section */
+        .content {
+            position: relative;
+            text-align: center;
+            padding: 3rem 2rem;
+            z-index: 4;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in 3s forwards;
+        }
+
+        .trailer-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #ccc;
+            margin: 2rem 0 1rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #999;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border: 2px solid #fff;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+            transform: scale(1.05);
+        }
+
+        .btn-primary {
+            border-color: #ff0000;
+            color: #ff0000;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+            z-index: 4;
+        }
+
+        footer a {
+            color: #999;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInBg {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInMascot {
+            from { 
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                width: 350px;
+                padding-top: 5vh;
+            }
+
+            .tv-container {
+                width: 95%;
+                margin-top: 2rem;
+            }
+
+            .mascot {
+                width: 200px;
+                max-width: 40%;
+                right: 0;
+            }
+
+            .trailer-text {
+                font-size: 1.2rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 280px;
+            }
+
+            .trailer-text {
+                font-size: 1rem;
+            }
+
+            .mascot {
+                display: none; /* Hide mascot on very small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Room -->
+    <div class="background"></div>
+
+    <!-- Logo -->
+    <div class="logo">
+        <img src="The-Quiet-Dark-logo-2026-no-bg.png" alt="The Quiet Dark">
+    </div>
+
+    <!-- TV Container with Video -->
+    <div class="tv-container">
+        <div class="video-wrapper">
+            <!-- YouTube Video Embed - REPLACE VIDEO_ID with your actual video ID -->
+            <iframe 
+    src="https://www.youtube.com/embed/T9Q56GS91kk" 
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen>
+</iframe>
+            <!-- TV Frame Overlay -->
+            <div class="tv-frame"></div>
+        </div>
+    </div>
+
+    <!-- Hooded Mascot -->
+    <div class="mascot">
+        <img src="yt-profile.jpg" alt="The Quiet Dark Mascot">
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <p class="trailer-text">Watch the trailer... if you dare...</p>
+        <p class="tagline">True horror stories from the dark. Real experiences. Real fear. New nightmares every week.</p>
+
+        <div class="cta-buttons">
+            <a href="https://www.youtube.com/@quietdarkstories" target="_blank" class="btn btn-primary">
+                Watch on YouTube
+            </a>
+            <a href="mailto:submit@quietdarkstories.com" class="btn">
+                Submit Your Story
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Quiet Dark Stories. All Rights Reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://www.youtube.com/@quietdarkstories" target="_blank">YouTube</a> 
+            <!-- <a href="#" target="_blank">TikTok</a> -->
+        </p>
+    </footer>
+
+</body>
+</html>
