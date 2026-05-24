@@ -28,7 +28,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://sombusiness.github.io/thequietdark/dark_room_vignette.png');
+            background-image: url('dark_room_vignette.png');
             background-size: cover;
             background-position: center;
             opacity: 0;
@@ -57,7 +57,7 @@
             max-width: 80%;
             z-index: 10;
             opacity: 0;
-            pointer-events: none;          /* cannot block clicks */
+            pointer-events: none;
             animation:
                 fadeInLogoSimple 2s ease-in 2.5s forwards,
                 fadeOutLogo 1.5s ease-out 7.5s forwards;
@@ -72,9 +72,9 @@
         /* TV Container */
         .tv-container {
             position: absolute;
-            width: 600px;
-            max-width: 70%;
-            top: 50%;
+            width: 650px;
+            max-width: 75%;
+            top: 44%;              /* slightly higher to make room for CTAs */
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 3;
@@ -84,34 +84,32 @@
 
         /* YouTube iframe wrapper */
         .video-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 61%;       /* closer to the TV screen’s aspect ratio */
-    border-radius: 16px;       /* matches the rounded screen corners */
-    overflow: hidden;
-}
+            position: relative;
+            width: 100%;
+            /* aspect ratio tuned to tv_frame.png */
+            padding-bottom: 58%;
+            overflow: visible;     /* let the TV img extend beyond if needed */
+        }
 
-/* Centered video, slightly scaled to hide edges behind the bezel */
-.video-wrapper iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 115%;               /* a bit wider so edges are hidden */
-    height: 115%;              /* a bit taller so edges are hidden */
-    transform: translate(-50%, -50%);
-    border: none;
-}
-        /* TV Frame Overlay */
-        .tv-frame {
+        /* YouTube iframe: fills the glass area */
+        .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
-            background-image: url('https://sombusiness.github.io/thequietdark/tv_frame.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
+            transform: translate(-50%, -50%);
+            border: none;
+        }
+
+        /* TV frame as an <img> OVER the iframe */
+        .video-wrapper .tv-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 118%;
+            height: 131%;
+            transform: translate(-50%, -50%);
             pointer-events: none;
             z-index: 5;
         }
@@ -134,29 +132,29 @@
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
         }
 
-       /* Hooded Mascot - Left Side */
-.mascot {
-    position: fixed;
-    left: 5%;
-    bottom: 0%;
-    width: 260px;
-    max-width: 22%;
-    z-index: 4;
-    opacity: 0;
-    transform: translateX(-150px);
-    animation: slideInMascot 2.5s ease-out 11s forwards;
-}
+        /* Hooded Mascot - Left Side */
+        .mascot {
+            position: fixed;
+            left: 5%;
+            bottom: 0%;
+            width: 260px;
+            max-width: 22%;
+            z-index: 4;
+            opacity: 0;
+            transform: translateX(-150px);
+            animation: slideInMascot 2.5s ease-out 11s forwards;
+        }
 
-.mascot img {
-    width: 100%;
-    height: auto;
-    opacity: 0.5;
-}
+        .mascot img {
+            width: 100%;
+            height: auto;
+            opacity: 0.5;
+        }
 
         /* CTA Section - Bottom */
         .cta-section {
             position: fixed;
-            bottom: 12%;
+            bottom: 7%;            /* a bit lower for breathing room */
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
@@ -169,7 +167,7 @@
             font-size: 1.3rem;
             font-style: italic;
             color: #ccc;
-            margin-bottom: 1rem;
+            margin-bottom: 1.3rem;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             letter-spacing: 2px;
         }
@@ -270,7 +268,8 @@
             }
 
             .tv-container {
-                width: 500px;
+                width: 520px;
+                top: 46%;
             }
 
             .logo-small {
@@ -312,7 +311,6 @@
                 padding: 3rem 1rem;
             }
 
-            /* On mobile, use the static logo only (no fade-out) */
             .logo-center {
                 width: 320px;
                 position: relative;
@@ -435,7 +433,9 @@
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen>
                 </iframe>
-                <div class="tv-frame"></div>
+
+                <!-- TV frame overlay -->
+                <img src="tv_frame.png" alt="" class="tv-frame">
             </div>
         </div>
 
